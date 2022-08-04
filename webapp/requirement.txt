@@ -1,0 +1,4 @@
+loguru==0.4.1
+fastapi
+uvicorn
+pyzmq
