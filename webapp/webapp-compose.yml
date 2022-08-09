@@ -1,0 +1,25 @@
+version: "3.4"  # optional since v1.27.0
+
+services:
+  log-app:
+    container_name: log-app
+    build: webapp/
+    image: webapp
+    command: python main.py
+    restart: on-failure
+    ports:
+      - "${WEBAPP_PORT}:${WEBAPP_PORT}"
+    volumes:
+      - ./webapp/:/app
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+    environment:
+      WEBAPP_PORT: ${WEBAPP_PORT:?err}
+      WEBAPP_LOG_PORT: ${WEBAPP_LOG_PORT:?err}
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "udp://localhost:${WEBAPP_LOG_PORT}"
+        tag: "web-app"

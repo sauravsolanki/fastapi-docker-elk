@@ -67,17 +67,17 @@ class CustomizeLogger:
             backtrace=True,
             level=level.upper(),
             format=format,
-            serialize=True
+            #serialize=True
         )
-        logger.add(
-            str(filepath),
-            rotation=rotation,
-            retention=retention,
-            enqueue=True,
-            backtrace=True,
-            level=level.upper(),
-            format=format
-        )
+        # logger.add(
+        #     str(filepath),
+        #     rotation=rotation,
+        #     retention=retention,
+        #     enqueue=True,
+        #     backtrace=True,
+        #     level=level.upper(),
+        #     format=format
+        # )
 
         # client.py
         #socket = zmq.Context().socket(zmq.PUB)

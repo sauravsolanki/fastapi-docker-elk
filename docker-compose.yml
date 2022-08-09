@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.3'
 
 services:
 
@@ -62,9 +62,12 @@ services:
       - "50000:50000/tcp"
       - "50000:50000/udp"
       - "9600:9600"
+      - "${WEBAPP_LOG_PORT}:${WEBAPP_LOG_PORT}"
     environment:
       LS_JAVA_OPTS: -Xms256m -Xmx256m
       LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+      WEBAPP_LOG_PORT: ${WEBAPP_LOG_PORT}
+      WEBAPP_INDEX: ${WEBAPP_INDEX}
     networks:
       - elk
     depends_on:
